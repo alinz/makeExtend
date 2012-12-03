@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>makeExtend example</title>
+    </head>
+    <body>
+        <script type="text/javascript" src="makeExtend.js"></script>
+        <script type="text/javascript">
+
+            //define base class
+            var class1 = makeExtend({
+                initialize: function() {
+                    this.arg1 = 'hello';
+                },
+                getArg1: function() {
+                    return this.arg1;
+                }
+            });
+
+            //class2 is extend version of class1
+            var class2 = makeExtend({
+                //overriding getArg1 in class1
+                getArg1: function() {
+                    //calling super implementation of getArg1
+                    return this.parent.getArg1.call(this) + ' World';
+                }
+            }, class1);
+
+            var obj2 = new class2();
+            console.log(obj2.getArg1());
+
+        </script>
+    </body>
+</html>
